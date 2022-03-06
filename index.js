@@ -1,10 +1,17 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose')
+const todoHandler = require('./routes/handlerRoutes')
+
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }),)
 
 app.get('/',(req,res)=>{
     res.send('hello World')
 })
+
+app.use('/todo',todoHandler)
 
 // Default Error handler
 function errorHandler(err,req,res,next){
@@ -26,3 +33,5 @@ mongoose.connect(`mongodb+srv://TestWLWS:9Nq4s6JbUZBrtC2R@cluster0.pnxzb.mongodb
     }).catch(e => {
         console.log(e)
     })
+
+    // There might be Some error With Async Await
